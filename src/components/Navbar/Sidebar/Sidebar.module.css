@@ -1,0 +1,12 @@
+.sidebar {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2vw;
+    background: #edeef0;
+    text-align: center;
+    width: 150px;
+    height: 100px;
+
+
+}
