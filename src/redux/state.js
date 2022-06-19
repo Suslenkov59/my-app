@@ -1,5 +1,6 @@
-import React from "react";
-import {renderEntireTree} from "../render";
+let rerenderEntireTree = () => {
+    console.log('State changed');
+}
 
 let state = {
     profilePage: {
@@ -9,16 +10,17 @@ let state = {
             {id: 3, message: 'Ростислав', likesCount: 6, disLikesCount: 2},
             {id: 4, message: 'делать сайты мы не бросим', likesCount: 6, disLikesCount: 2},
             {id: 5, message: 'Продам гараж +7985', likesCount: 6, disLikesCount: 2},
-        ]
-
+        ],
+        newPostText: 'ПУСТОТА'
     },
     dialogsPage: {
         dialogs: [
-            {id: 1, name: 'Настя',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 2, name: 'Кирилл',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 3, name: 'Ростислав',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 4, name: 'Вася',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 5, name: 'Никита',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
+            {id: 1, name: 'Dimych'},
+            {id: 2, name: 'Andrew'},
+            {id: 3, name: 'Sveta'},
+            {id: 4, name: 'Sasha'},
+            {id: 5, name: 'Viktor'},
+            {id: 6, name: 'Valera'}
         ],
         messages: [
             {id: 1, message: 'Привет'},
@@ -28,24 +30,29 @@ let state = {
             {id: 5, message: 'Привет'},
         ]
     },
-    sidebarInfo: {
-        sidebar: [
-            {id: 1, name: 'Настя',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 2, name: 'Кирилл',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 3, name: 'Ростислав',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-        ]
-    }
+    sidebar: {}
 }
 
-export let addPost = (postMessage) => {
+window.state = state;
+
+export const addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
-        likesCount: 0,
-        dislikesCount: 0,
+        message: state.profilePage.newPostText,
+        likesCount: 0
     };
     state.profilePage.posts.push(newPost);
-    renderEntireTree();
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state);
+}
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;  // observer
 }
 
 export default state;

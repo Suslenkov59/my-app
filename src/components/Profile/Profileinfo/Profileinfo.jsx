@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import s from './ProfileInfo.module.css';
 
 const ProfileInfo = () => {
@@ -6,12 +6,13 @@ const ProfileInfo = () => {
         <div>
             <div>
                 <img
-                    src='https://funart.pro/uploads/posts/2021-07/1626448057_26-funart-pro-p-kot-s-lampoi-zhivotnie-krasivo-foto-41.jpg'/>
+                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'/>
             </div>
             <div className={s.descriptionBlock}>
-                Ниже раздробленная ава + описание
+                ava + description
             </div>
         </div>
     )
 }
-export default ProfileInfo
+
+export default ProfileInfo;

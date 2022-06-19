@@ -1,8 +1,7 @@
-import React from "react";
-import s from './Post.module.css'
+import React from 'react';
+import s from './Post.module.css';
 
-const Posts = (props) => {
-
+const Post = (props) => {
     return (
         <div className={s.item}>
             <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>
@@ -13,6 +12,6 @@ const Posts = (props) => {
             </div>
         </div>
     )
-
 }
-export default Posts;
+
+export default Post;
