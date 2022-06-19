@@ -1,7 +1,6 @@
-import React from "react";
-let renderEntireTree = () => {
-    console.log('1')
-};
+let rerenderEntireTree = () => {
+    console.log('State changed');
+}
 
 let state = {
     profilePage: {
@@ -13,15 +12,14 @@ let state = {
             {id: 5, message: 'Продам гараж +7985', likesCount: 6, disLikesCount: 2},
         ],
         newPostText: 'Что у вас нового?'
-
     },
     dialogsPage: {
         dialogs: [
-            {id: 1, name: 'Настя',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 2, name: 'Кирилл',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 3, name: 'Ростислав',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 4, name: 'Вася',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 5, name: 'Никита',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
+            {id: 1, name: 'Настя'},
+            {id: 2, name: 'Кирилл'},
+            {id: 3, name: 'Ростислав'},
+            {id: 4, name: 'Вася'},
+            {id: 5, name: 'Никита'},
         ],
         messages: [
             {id: 1, message: 'Привет'},
@@ -31,13 +29,7 @@ let state = {
             {id: 5, message: 'Привет'},
         ]
     },
-    sidebarInfo: {
-        sidebar: [
-            {id: 1, name: 'Настя',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 2, name: 'Кирилл',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-            {id: 3, name: 'Ростислав',icon: <img src='https://wald-jaguar.ru/wp-content/uploads/2021/05/CpXdZMN6AvM.jpg'/>},
-        ]
-    }
+    sidebar: {}
 }
 window.state = state;
 
@@ -45,20 +37,22 @@ export const addPost = () => {
     let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
-        likesCount: 0,
-        dislikesCount: 0,
+        likesCount: 0
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 }
 
 export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 }
 
-export const subscribe =(observer) =>{
-renderEntireTree = observer
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;  // observer
 }
+
 export default state;
+
+// store - OOP
