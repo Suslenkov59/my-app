@@ -1,5 +1,7 @@
 import React from "react";
-import {renderEntireTree} from "../render";
+let renderEntireTree = () => {
+    console.log('1')
+};
 
 let state = {
     profilePage: {
@@ -9,7 +11,8 @@ let state = {
             {id: 3, message: 'Ростислав', likesCount: 6, disLikesCount: 2},
             {id: 4, message: 'делать сайты мы не бросим', likesCount: 6, disLikesCount: 2},
             {id: 5, message: 'Продам гараж +7985', likesCount: 6, disLikesCount: 2},
-        ]
+        ],
+        newPostText: 'Что у вас нового?'
 
     },
     dialogsPage: {
@@ -36,16 +39,26 @@ let state = {
         ]
     }
 }
+window.state = state;
 
-export let addPost = (postMessage) => {
+export const addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0,
         dislikesCount: 0,
     };
     state.profilePage.posts.push(newPost);
-    renderEntireTree();
+    state.profilePage.newPostText = '';
+    renderEntireTree(state);
 }
 
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    renderEntireTree(state);
+}
+
+export const subscribe =(observer) =>{
+renderEntireTree = observer
+}
 export default state;

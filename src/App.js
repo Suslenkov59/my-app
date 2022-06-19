@@ -8,8 +8,9 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {updateNewPostText} from "./redux/state";
 
-function App(props) {
+function App (props) {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -23,7 +24,8 @@ function App(props) {
                         <Route path="/profile"
                                element={<Profile
                                    posts={props.posts}
-                               addPost={props.addPost()}/>}/>
+                                   addPost={props.addPost()}
+                                   updateNewPostElement={props.updateNewPostText}/>}/>
                         <Route path="/dialogs/*"
                                element={<Dialogs
                                    dialogs={props.dialogs}
